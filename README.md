@@ -6,54 +6,58 @@ This is a **Mini Project Management System API** built using Laravel.
 It includes authentication, project management, task assignment, filtering, and authorization.
 
 ---
+⚙️ Setup Instructions'
 
-## ⚙️ Setup Instructions
+1. Clone the repository
+git clone https://github.com/mahendramahawar29/Project-Management.git
+cd Project-Management
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/mahendramahawar29/project-management-api.git
-cd project-management-api
-```
-
-### 2. Install dependencies
-
-```bash
+2. Install dependencies
 composer install
-```
 
-### 3. Setup environment file
-
-```bash
+3. Setup environment file
 cp .env.example .env
-```
 
-Update database credentials in `.env`
+4. Configure Database
 
-### 4. Generate key
+Open .env file and update:
 
-```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=project_management
+DB_USERNAME=root
+DB_PASSWORD=
+
+👉 Important:
+
+Create a database in phpMyAdmin named: project_management
+5. Generate application key
 php artisan key:generate
-```
 
-### 5. Run migrations
-
-```bash
+6. Run migrations (create tables)
 php artisan migrate
-```
 
-(Optional: if seeders added)
-
-```bash
+7. (Optional) Run seeders
 php artisan migrate --seed
-```
 
-### 6. Run server
+👉 This will insert dummy data if seeders are available.
 
-```bash
+8. Install Sanctum (if not already installed)
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+
+9. Run the server
 php artisan serve
-```
 
+👉 API will be available at:
+
+http://127.0.0.1:8000/api
+🔐 Authentication Note
+
+After login, use the token in headers:
+
+Authorization: Bearer YOUR_TOKEN
+Content-Type: application/json
 ---
 
 ## 🔐 Authentication APIs
