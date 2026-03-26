@@ -1,80 +1,140 @@
 # 🚀 Project Management System API (Laravel)
 
+---
+
 ## 📌 Overview
 
 This is a **Mini Project Management System API** built using Laravel.
-It includes authentication, project management, task assignment, filtering, and authorization.
+It includes:
+
+* 🔐 Authentication
+* 📁 Project Management
+* 📌 Task Assignment
+* 🔍 Filtering
+* 🔒 Authorization
 
 ---
-⚙️ Setup Instructions'
 
-1. Clone the repository
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the Repository
+
+```bash id="cln1"
 git clone https://github.com/mahendramahawar29/Project-Management.git
 cd Project-Management
+```
 
-2. Install dependencies
+---
+
+### 2️⃣ Install Dependencies
+
+```bash id="dep2"
 composer install
+```
 
-3. Setup environment file
+---
+
+### 3️⃣ Setup Environment File
+
+```bash id="env3"
 cp .env.example .env
+```
 
-4. Configure Database
+---
 
-Open .env file and update:
+### 4️⃣ Configure Database
 
+Open `.env` file and update:
+
+```env id="db4"
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=project_management
 DB_USERNAME=root
 DB_PASSWORD=
+```
 
-👉 Important:
+👉 **Important:**
 
-Create a database in phpMyAdmin named: project_management
-5. Generate application key
+* Create a database in phpMyAdmin named: `project_management`
+
+---
+
+### 5️⃣ Generate Application Key
+
+```bash id="key5"
 php artisan key:generate
+```
 
-6. Run migrations (create tables)
+---
+
+### 6️⃣ Run Migrations (Create Tables)
+
+```bash id="mig6"
 php artisan migrate
+```
 
-7. (Optional) Run seeders
+---
+
+### 7️⃣ (Optional) Run Seeders
+
+```bash id="seed7"
 php artisan migrate --seed
+```
 
 👉 This will insert dummy data if seeders are available.
 
-8. Install Sanctum (if not already installed)
-php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+---
 
-9. Run the server
+### 8️⃣ Install Sanctum (if not already installed)
+
+```bash id="san8"
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+```
+
+---
+
+### 9️⃣ Run the Server
+
+```bash id="srv9"
 php artisan serve
+```
 
 👉 API will be available at:
 
+```
 http://127.0.0.1:8000/api
-🔐 Authentication Note
+```
+
+---
+
+## 🔐 Authentication Note
 
 After login, use the token in headers:
 
+```http id="authh"
 Authorization: Bearer YOUR_TOKEN
 Content-Type: application/json
+```
+
 ---
 
 ## 🔐 Authentication APIs
 
-### Register
+### 🟢 Register
 
-POST `/api/register`
+**POST** `/api/register`
 
 Headers:
 
-```http
+```http id="regH"
 Content-Type: application/json
 ```
 
 Body:
 
-```json
+```json id="regB"
 {
   "name": "Mahendra",
   "email": "test@gmail.com",
@@ -84,19 +144,19 @@ Body:
 
 ---
 
-### Login
+### 🟢 Login
 
-POST `/api/login`
+**POST** `/api/login`
 
 Headers:
 
-```http
+```http id="logH"
 Content-Type: application/json
 ```
 
 Body:
 
-```json
+```json id="logB"
 {
   "email": "test@gmail.com",
   "password": "123456"
@@ -105,7 +165,7 @@ Body:
 
 Response:
 
-```json
+```json id="logR"
 {
   "status": true,
   "message": "Login successful",
@@ -119,9 +179,7 @@ Response:
 
 ## 🔑 Common Headers (For Protected APIs)
 
-All below APIs require:
-
-```http
+```http id="commonH"
 Authorization: Bearer TOKEN
 Content-Type: application/json
 ```
@@ -130,20 +188,20 @@ Content-Type: application/json
 
 ## 📁 Project APIs
 
-### Create Project
+### 🟢 Create Project
 
-POST `/api/projects`
+**POST** `/api/projects`
 
 Headers:
 
-```http
+```http id="p1"
 Authorization: Bearer TOKEN
 Content-Type: application/json
 ```
 
 Body:
 
-```json
+```json id="p2"
 {
   "title": "Project 1",
   "description": "Test project"
@@ -152,50 +210,50 @@ Body:
 
 ---
 
-### Get All Projects
+### 🟢 Get All Projects
 
-GET `/api/projects`
+**GET** `/api/projects`
 
 Headers:
 
-```http
+```http id="p3"
 Authorization: Bearer TOKEN
 ```
 
 ---
 
-### Get Single Project
+### 🟢 Get Single Project
 
-GET `/api/projects/{id}`
+**GET** `/api/projects/{id}`
 
 Headers:
 
-```http
+```http id="p4"
 Authorization: Bearer TOKEN
 ```
 
 ---
 
-### Update Project
+### 🟢 Update Project
 
-PUT `/api/projects/{id}`
+**PUT** `/api/projects/{id}`
 
 Headers:
 
-```http
+```http id="p5"
 Authorization: Bearer TOKEN
 Content-Type: application/json
 ```
 
 ---
 
-### Delete Project
+### 🔴 Delete Project
 
-DELETE `/api/projects/{id}`
+**DELETE** `/api/projects/{id}`
 
 Headers:
 
-```http
+```http id="p6"
 Authorization: Bearer TOKEN
 ```
 
@@ -203,20 +261,20 @@ Authorization: Bearer TOKEN
 
 ## 📌 Task APIs
 
-### Create Task
+### 🟢 Create Task
 
-POST `/api/tasks`
+**POST** `/api/tasks`
 
 Headers:
 
-```http
+```http id="t1"
 Authorization: Bearer TOKEN
 Content-Type: application/json
 ```
 
 Body:
 
-```json
+```json id="t2"
 {
   "project_id": 1,
   "title": "Task 1",
@@ -228,63 +286,58 @@ Body:
 
 ---
 
-### Get Tasks
+### 🟢 Get Tasks
 
-GET `/api/tasks`
+**GET** `/api/tasks`
 
 Headers:
 
-```http
+```http id="t3"
 Authorization: Bearer TOKEN
 ```
 
 ---
 
-### Filters
+### 🔍 Filters
 
-* By status
-  `/api/tasks?status=pending`
-
-* By assigned user
-  `/api/tasks?assigned_to=1`
-
-* By due date
-  `/api/tasks?due_date=2026-03-30`
+* By status → `/api/tasks?status=pending`
+* By assigned user → `/api/tasks?assigned_to=1`
+* By due date → `/api/tasks?due_date=2026-03-30`
 
 ---
 
-### Get Single Task
+### 🟢 Get Single Task
 
-GET `/api/tasks/{id}`
+**GET** `/api/tasks/{id}`
 
 Headers:
 
-```http
+```http id="t4"
 Authorization: Bearer TOKEN
 ```
 
 ---
 
-### Update Task
+### 🟢 Update Task
 
-PUT `/api/tasks/{id}`
+**PUT** `/api/tasks/{id}`
 
 Headers:
 
-```http
+```http id="t5"
 Authorization: Bearer TOKEN
 Content-Type: application/json
 ```
 
 ---
 
-### Delete Task
+### 🔴 Delete Task
 
-DELETE `/api/tasks/{id}`
+**DELETE** `/api/tasks/{id}`
 
 Headers:
 
-```http
+```http id="t6"
 Authorization: Bearer TOKEN
 ```
 
@@ -318,4 +371,4 @@ Authorization: Bearer TOKEN
 
 ## 🧑‍💻 Author
 
-Mahendra Mahawar
+**Mahendra Mahawar**
